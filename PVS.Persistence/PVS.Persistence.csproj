@@ -12,4 +12,9 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\PVS.Entities\PVS.Entities.csproj" />
+    <ProjectReference Include="..\PVS.Persistance.Contracts\PVS.Persistance.Contracts.csproj" />
+  </ItemGroup>
+
 </Project>

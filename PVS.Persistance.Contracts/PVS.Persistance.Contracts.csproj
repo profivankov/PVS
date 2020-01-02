@@ -4,4 +4,8 @@
     <TargetFramework>netcoreapp3.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\PVS.Entities\PVS.Entities.csproj" />
+  </ItemGroup>
+
 </Project>
