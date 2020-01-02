@@ -14,15 +14,21 @@ namespace PVS.WebApi.Controllers
 {
     [Route("users")]
     [ApiController]
-    public class HomeController : ApiController
+    public class UserController : ApiController
     {
         private readonly IUserService _userService;
 
-        public HomeController(IUserService userService)
+        public UserController(IUserService userService)
         {
             _userService = userService;
         }
 
+        [HttpGet("{id}")]
+        public async Task<UserDTO> GetAsync(Guid id)
+        {
+            var user = await _userService.GetAsync(id);
+            return user;
+        }
         [HttpGet]
         public async Task<IEnumerable<UserDTO>> GetAllAsync()
         {

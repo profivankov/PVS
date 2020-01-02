@@ -15,10 +15,10 @@ namespace PVS.Persistence.Core
 
         public PVSContext(DbContextOptions<PVSContext> options) : base(options) { }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer("Server=DESKTOP-15RAB9Q\\SQLEXPRESS;Database = PVS; Integrated Security = true");
-        }
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    optionsBuilder.UseSqlServer("Server=DESKTOP-15RAB9Q\\SQLEXPRESS;Database = PVS; Integrated Security = true");
+        //}
 
         public DbSet<User> Users { get; set; }
         public DbSet<Project> Projects { get; set; }

@@ -32,7 +32,7 @@ namespace PVS.WebApi
 
             services.AddDbContext<PVSContext>(options =>
             {
-                options.UseSqlServer(Configuration.GetConnectionString("EfCfConnection"));
+                options.UseSqlServer("Server=DESKTOP-15RAB9Q\\SQLEXPRESS;Database = PVS; Integrated Security = true");
             });
 
             services.AddScoped<IUserRepository, UserRepository>();
