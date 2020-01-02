@@ -5,8 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="DTO\" />
-    <Folder Include="Services\" />
+    <ProjectReference Include="..\PVS.Entities\PVS.Entities.csproj" />
   </ItemGroup>
 
 </Project>
