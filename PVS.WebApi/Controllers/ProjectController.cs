@@ -12,58 +12,58 @@ using PVS.WebApi.Models;
 
 namespace PVS.WebApi.Controllers
 {
-    [Route("users")]
+    [Route("projects")]
     [ApiController]
-    public class UserController : ApiController
+    public class ProjectController : ApiController
     {
-        private readonly IUserService _userService;
+        private readonly IProjectService _projectService;
 
-        public UserController(IUserService userService)
+        public ProjectController(IProjectService projectService)
         {
-            _userService = userService;
+            _projectService = projectService;
         }
 
         [HttpGet("{id}")]
-        public async Task<UserDTO> GetAsync(Guid id)
+        public async Task<ProjectDTO> GetAsync(Guid id)
         {
-            var user = await _userService.GetAsync(id);
-            return user;
+            var project = await _projectService.GetAsync(id);
+            return project;
         }
 
         [HttpGet]
-        public async Task<IEnumerable<UserDTO>> GetAllAsync()
+        public async Task<IEnumerable<ProjectDTO>> GetAllAsync()
         {
-            var userList = await _userService.GetAllAsync();
-            return userList;
+            var projectList = await _projectService.GetAllAsync();
+            return projectList;
         }
 
         [HttpPost]
-        public async Task<BaseModel> CreateAsync([FromBody] UserDTO model)
+        public async Task<BaseModel> CreateAsync([FromBody] ProjectDTO model)
         {
             if (!TryValidateModel(model))
             {
                 throw new Exception("400");
             }
 
-            var id = await _userService.CreateAsync(model);
+            var id = await _projectService.CreateAsync(model);
             return IdResponse(id);
         }
 
         [HttpDelete("{id}")]
         public Task DeleteAsync(Guid id)
         {
-            return _userService.DeleteAsync(id);
+            return _projectService.DeleteAsync(id);
         }
 
         [HttpPut]
-        public async Task<UserDTO> EditAsync([FromBody] UserDTO model)
+        public async Task<ProjectDTO> EditAsync([FromBody] ProjectDTO model)
         {
             if (!TryValidateModel(model))
             {
                 throw new Exception("400");
             }
 
-            return await _userService.EditAsync(model);
+            return await _projectService.EditAsync(model);
         }
     }
 }

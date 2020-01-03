@@ -18,7 +18,8 @@ namespace PVS.Contracts.DTO
                 Id = entity.Id,
                 FirstName = entity.FirstName,
                 LastName = entity.LastName,
-                Email = entity.Email
+                Email = entity.Email,
+                Password = entity.Password
             };
         }
     }
@@ -38,5 +39,8 @@ namespace PVS.Contracts.DTO
         [Required(ErrorMessage = "The email address is required")]
         [EmailAddress(ErrorMessage = "Invalid Email Address")]
         public string Email { get; set; }
+
+        [Required]
+        public string Password { get; set; }
     }
 }

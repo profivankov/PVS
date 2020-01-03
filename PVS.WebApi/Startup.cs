@@ -35,10 +35,23 @@ namespace PVS.WebApi
                 options.UseSqlServer("Server=DESKTOP-15RAB9Q\\SQLEXPRESS;Database = PVS; Integrated Security = true");
             });
 
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                    builder => builder.AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader());
+            });
+
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IProjectRepository, ProjectRepository>();
+            services.AddScoped<IProjectMemberRepository, ProjectMemberRepository>();
+            services.AddScoped<IProjectTaskRepository, ProjectTaskRepository>();
 
             services.AddScoped<IUserService, UserService>();
-
+            services.AddScoped<IProjectService, ProjectService>();
+            services.AddScoped<IProjectMemberService, ProjectMemberService>();
+            services.AddScoped<IProjectTaskService, ProjectTaskService>();
 
         }
 
@@ -55,6 +68,7 @@ namespace PVS.WebApi
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+            app.UseCors("CorsPolicy");
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
