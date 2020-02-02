@@ -9,6 +9,7 @@ namespace PVS.Contracts.Services
     public interface IProjectService
     {
         Task<ProjectDTO> GetAsync(Guid id);
+        Task<IEnumerable<ProjectDTO>> GetByUserIdAsync(Guid id);
         Task<IEnumerable<ProjectDTO>> GetAllAsync();
         Task<Guid> CreateAsync(ProjectDTO model);
         Task DeleteAsync(Guid id);

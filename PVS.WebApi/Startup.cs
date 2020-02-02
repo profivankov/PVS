@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -43,6 +45,11 @@ namespace PVS.WebApi
                         .AllowAnyHeader());
             });
 
+            services.AddSpaStaticFiles(configuration =>
+            {
+                configuration.RootPath = "ClientApp/dist";
+            });
+
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IProjectRepository, ProjectRepository>();
             services.AddScoped<IProjectMemberRepository, ProjectMemberRepository>();
@@ -52,6 +59,11 @@ namespace PVS.WebApi
             services.AddScoped<IProjectService, ProjectService>();
             services.AddScoped<IProjectMemberService, ProjectMemberService>();
             services.AddScoped<IProjectTaskService, ProjectTaskService>();
+
+            services.AddMvc(configuration =>
+                {
+                    configuration.EnableEndpointRouting = false;
+                });
 
         }
 
@@ -75,13 +87,37 @@ namespace PVS.WebApi
             app.UseRouting();
 
             app.UseAuthorization();
+            app.UseSpaStaticFiles();
 
-            app.UseEndpoints(endpoints =>
+
+            //app.UseMvc(routes =>
+            //{
+            //    routes.MapRoute(
+            //        name: "default",
+            //        template: "{controller}/{action=Index}/{id?}");
+            //});
+
+            app.UseMvcWithDefaultRoute();
+
+            app.UseSpa(spa =>
             {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                // To learn more about options for serving an Angular SPA from ASP.NET Core,
+                // see https://go.microsoft.com/fwlink/?linkid=864501
+
+                spa.Options.SourcePath = "ClientApp";
+
+                if (env.IsDevelopment())
+                {
+                    spa.UseAngularCliServer(npmScript: "start");
+                }
             });
+
+            //app.UseEndpoints(endpoints =>
+            //{
+            //    endpoints.MapControllerRoute(
+            //        name: "default",
+            //        pattern: "{controller=Home}/{action=Index}/{id?}");
+            //});
         }
     }
 }

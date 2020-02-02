@@ -1,0 +1,24 @@
+<!-- <ng-container *ngIf="(project$ | async) as project; else loading"> -->
+
+<div class="row">
+    <h1 class="col" style="border-bottom: 1px solid black; padding-bottom:3px;">Do thing</h1>
+</div>
+<br>
+
+<div class="row">
+    <div class="col">
+        <h2>Daughter tasks <a [routerLink]="['/projects/tasks/add']" class="btn btn-primary mb-0">Add</a></h2>
+    </div>
+    <p>Task created by: Robert</p>
+    <br>
+    <div class="w-100"></div>
+    <p class="col">Do another thing </p>
+    <div class="w-100"></div>
+    <p class="col">Do more things </p>
+    <div class="w-100"></div>
+    <p class="col">Do extra things</p>
+</div>
+
+
+<!-- </ng-container>
+  <ng-template #loading>Loading…</ng-template> -->

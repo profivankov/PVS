@@ -43,4 +43,9 @@ namespace PVS.Contracts.DTO
         [Required]
         public string Password { get; set; }
     }
+
+    public class AuthenticatedUser: UserDTO
+    {
+        public string AuthToken { get; set; }
+    }
 }

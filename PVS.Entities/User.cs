@@ -14,6 +14,5 @@ namespace PVS.Entities
         public string Password { get; set; }
 
         public virtual ICollection<Project> Projects { get; set; }
-
     }
 }

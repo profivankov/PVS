@@ -12,7 +12,7 @@ using PVS.WebApi.Models;
 
 namespace PVS.WebApi.Controllers
 {
-    [Route("projects")]
+    [Route("api/projects")]
     [ApiController]
     public class ProjectController : ApiController
     {
@@ -28,6 +28,13 @@ namespace PVS.WebApi.Controllers
         {
             var project = await _projectService.GetAsync(id);
             return project;
+        }
+
+        [HttpGet("byuser/{id}")]
+        public async Task<IEnumerable<ProjectDTO>> GetByUserAsync(Guid id)
+        {
+            var projectList = await _projectService.GetByUserIdAsync(id);
+            return projectList;
         }
 
         [HttpGet]

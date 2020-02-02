@@ -18,6 +18,18 @@ namespace PVS.Services
             _userRepository = userRepository;
         }
 
+        public User FindAsync(UserDTO model)
+        {
+            var query = _userRepository.Find(user => user.Password == model.Password && user.Email == model.Email).Single();
+            if (query != null)
+            {
+                return query;
+            }
+            else
+            {
+                return null;
+            }
+        }
         public async Task<UserDTO> GetAsync(Guid id)
         {
             var entity = await _userRepository.GetByIdAsync(id);
@@ -42,7 +54,8 @@ namespace PVS.Services
                 Id = Guid.NewGuid(),
                 FirstName = model.FirstName,
                 LastName = model.LastName,
-                Email = model.Email
+                Email = model.Email,
+                Password = model.Password
             };
 
             await _userRepository.InsertAsync(entity);
@@ -72,6 +85,7 @@ namespace PVS.Services
             entity.FirstName = model.FirstName;
             entity.LastName = model.LastName;
             entity.Email = model.Email;
+            entity.Password = model.Password;
             _userRepository.Update(entity);
             await _userRepository.SaveAsync();
 

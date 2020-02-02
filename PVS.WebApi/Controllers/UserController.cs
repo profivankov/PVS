@@ -12,7 +12,7 @@ using PVS.WebApi.Models;
 
 namespace PVS.WebApi.Controllers
 {
-    [Route("users")]
+    [Route("api/users")]
     [ApiController]
     public class UserController : ApiController
     {

@@ -1,0 +1,31 @@
+<ng-container *ngIf="(project$ | async) as project; else loading">
+
+  <div class="row">
+    <h1 class="col">{{ project.projectName }}</h1>
+  </div>
+  <br>
+  <div class="col-md-12 rounded" style="background-color:lightgray">
+    <br>{{ project.description }}
+    <br>
+    <br>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col">
+      <h2>Project tasks <a [routerLink]="['/projects/tasks/add']" class="btn btn-primary mb-0">Add</a></h2>
+    </div>
+    <div class="col">
+      <h2>Project members <a [routerLink]="['/projects/members/add']" class="btn btn-primary mb-0">Add</a></h2>
+    </div>
+    <br>
+    <div class="w-100"></div>
+    <a [routerLink]="['/projects/tasks']" class="col">Do thing </a>
+    <a [routerLink]="['/projects/members']" class="col">Robert </a>
+    <div class="w-100"></div>
+    <a [routerLink]="['/projects/tasks']" class="col">Do another thing  </a>
+    <a [routerLink]="['/projects/members']" class="col">James  </a>
+  </div>
+
+
+</ng-container>
+<ng-template #loading>Loading…</ng-template>

@@ -28,6 +28,21 @@ namespace PVS.Services
             return entity.ToModel();
         }
 
+        public async Task<IEnumerable<ProjectDTO>> GetByUserIdAsync(Guid id) // get projects by user id
+        {
+            var entityList =  _projectRepository.Find(x => x.UserId == id);
+            if (entityList == null)
+            {
+                throw new Exception("No projects not found");
+            }
+            var modelList = new List<ProjectDTO>();
+            foreach (var entity in entityList)
+            {
+                modelList.Add(entity.ToModel());
+            }
+            return modelList;
+        }
+
         public async Task<IEnumerable<ProjectDTO>> GetAllAsync()
         {
             var query = await _projectRepository.GetAllAsync();

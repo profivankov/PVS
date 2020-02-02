@@ -1,4 +1,5 @@
 ﻿using PVS.Contracts.DTO;
+using PVS.Entities;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -12,5 +13,6 @@ namespace PVS.Contracts.Services
         Task<Guid> CreateAsync(UserDTO model);
         Task DeleteAsync(Guid id);
         Task<UserDTO> EditAsync(UserDTO model);
+        User FindAsync(UserDTO model);
     }
 }
